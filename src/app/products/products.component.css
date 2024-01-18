@@ -1,0 +1,20 @@
+product-card {
+  margin: 20px;
+  width: 100px;
+  height: 200px;
+}
+input
+{
+
+}
+
+.sticky-top {
+  position: relative;
+  /* Ensure a stacking context */
+  z-index: 1000;
+}
+
+
+.row{
+  margin-top: 20px;
+}

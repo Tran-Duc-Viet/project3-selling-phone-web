@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "project3-selling-phone-web": {
+      "hosting": {
+        "project3-selling-phone-web": [
+          "project3-selling-phone-web"
+        ]
+      }
+    },
+    "project-3-selling-phone-web": {
+      "hosting": {
+        "project3-selling-phone-web": [
+          "project-3-selling-phone-web"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "project-3-selling-phone-web"
+  }
+}

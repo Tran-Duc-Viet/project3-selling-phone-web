@@ -1,0 +1,26 @@
+.product-header-img{
+  margin-left: 300px;
+  width:50%;
+  height: 500px;
+}
+ngb-carousel
+{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+ng-template{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+product-card{
+  margin:20px;
+  width: 100px;
+  height: 200px;
+}
+.product-list-header{
+  display: flex;
+  justify-content: right;
+  margin-right: 10px;
+}

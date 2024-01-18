@@ -1,0 +1,251 @@
+<h1>{{productValue.name}} {{productValue.color}} {{productValue.storage}}</h1>
+<hr>
+<br>
+<div class = "row">
+  <div class="col-6">
+    <img [src]="productValue.imageUrl" alt="Product Picture">
+  </div>
+  <div class="col-6">
+    <h2>Company Name</h2>
+    <h3>{{productValue.companyName}}</h3>
+    <h2>Price</h2>
+    <h3 class="bs-danger-rgb">$ {{productValue.price}}</h3>
+    <h2>HighLights</h2>
+    <h3 [innerHTML]="getHighlights(productValue.highlights)" > </h3>
+    <h2>Promotions</h2>
+    <h3 [innerHTML]="getHighlights(productValue.promotions)"> </h3>
+  </div>
+</div>
+<br>
+<hr>
+<h2>Phone Specifications</h2>
+<div class="row justify-content-center">
+  <div class="col-auto" id="specs-list">
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowspan="2" scope="row">Network</th>
+          <td class="ttl">Technology</td>
+          <td class="nfo">{{productDetails.gsmNetworkDetails.networkTechnology}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowspan="2" scope="row">Launch</th>
+          <td class="ttl">Announced</td>
+          <td class="nfo" data-spec="year">{{productDetails.gsmLaunchDetails.launchAnnounced}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Status</td>
+          <td class="nfo" data-spec="status">{{productDetails.gsmLaunchDetails.launchStatus}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowspan="6" scope="row">Body</th>
+          <td class="ttl">Dimensions</td>
+          <td class="nfo" data-spec="dimensions">{{productDetails.gsmBodyDetails.bodyDimensions}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Weight</td>
+          <td class="nfo" data-spec="weight">{{productDetails.gsmBodyDetails.bodyWeight}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Build</td>
+          <td class="nfo" data-spec="build">{{productDetails.gsmBodyDetails.bodyBuild}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">SIM</td>
+          <td class="nfo" data-spec="sim">{{getHighlights(productDetails.gsmBodyDetails.bodySim)}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">&nbsp;</td>
+          <td class="nfo" data-spec="bodyother">{{productDetails.gsmBodyDetails.bodyOther1}}<br>
+            {{productDetails.gsmBodyDetails.bodyOther2}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowSpan="5" scope="row">Display</th>
+          <td class="ttl">Type</td>
+          <td class="nfo" data-spec="displaytype">{{productDetails.gsmDisplayDetails.displayType}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Size</td>
+          <td class="nfo" data-spec="displaysize">{{productDetails.gsmDisplayDetails.displaySize}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Resolution</td>
+          <td class="nfo" data-spec="displayresolution">{{productDetails.gsmDisplayDetails.displayResolution}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Protection</td>
+          <td class="nfo" data-spec="displayprotection">{{productDetails.gsmDisplayDetails.displayProtection}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">&nbsp;</td>
+          <td class="nfo" data-spec="displayother">{{productDetails.gsmDisplayDetails.displayOther1}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowSpan="4" scope="row">Platform</th>
+          <td class="ttl">OS</td>
+          <td class="nfo" data-spec="os">{{productDetails.gsmPlatformDetails.platformOs}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Chipset</td>
+          <td class="nfo" data-spec="chipset">{{productDetails.gsmPlatformDetails.platformChipset}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">CPU</td>
+          <td class="nfo" data-spec="cpu">{{productDetails.gsmPlatformDetails.platformCpu}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">GPU</td>
+          <td class="nfo" data-spec="gpu">{{productDetails.gsmPlatformDetails.platformGpu}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowSpan="5" scope="row">Memory</th>
+          <td class="ttl">Card slot</td>
+          <td class="nfo" data-spec="memoryslot">{{productDetails.gsmMemoryDetails.memoryCardSlot}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Internal</td>
+          <td class="nfo" data-spec="internalmemory">{{productDetails.gsmMemoryDetails.memoryInternal}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">&nbsp;</td>
+          <td class="nfo" data-spec="memoryother">{{productDetails.gsmMemoryDetails.memoryOther1}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowSpan="4" scope="row" class="small-line-height">Main Camera</th>
+          <td class="ttl">Camera</td>
+          <td class="nfo" data-spec="cam1modules" [innerHTML]="getHighlights(getMainCamera(productDetails.gsmMainCameraDetails))"></td>
+        </tr>
+        <tr>
+          <td class="ttl">Features</td>
+          <td class="nfo" data-spec="cam1features">{{productDetails.gsmMainCameraDetails.mainCameraFeatures}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Video</td>
+          <td class="nfo" data-spec="cam1video">{{productDetails.gsmMainCameraDetails.mainCameraVideo}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowSpan="4" scope="row" class="small-line-height">Selfie camera</th>
+          <td class="ttl">Camera</td>
+          <td class="nfo" data-spec="cam2modules" >
+            {{getHighlights(getSelfieCamera(productDetails.gsmSelfieCameraDetails))}}
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Features</td>
+          <td class="nfo" data-spec="cam2features">{{productDetails.gsmSelfieCameraDetails.selfieCameraFeatures}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Video</td>
+          <td class="nfo" data-spec="cam2video">{{productDetails.gsmSelfieCameraDetails.selfieCameraVideo}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowSpan="3" scope="row">Sound</th>
+          <td class="ttl">Loudspeaker</td>
+          <td class="nfo">{{productDetails.gsmSoundDetails.soundLoudspeaker}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">3.5mm jack</td>
+          <td class="nfo">
+          <td class="nfo">{{productDetails.gsmSoundDetails.sound35MmJack}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowspan="9" scope="row">Comms</th>
+          <td class="ttl">WLAN</td>
+          <td class="nfo" data-spec="wlan">{{productDetails.gsmCommunicationsDetails.communicationsWlan}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Bluetooth</td>
+          <td class="nfo" data-spec="bluetooth">{{productDetails.gsmCommunicationsDetails.communicationsBluetooth}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">Positioning</td>
+          <td class="nfo" data-spec="gps">{{productDetails.gsmCommunicationsDetails.communicationsPositioning}}</td>
+        </tr>
+        <tr>
+          <td class="ttl">NFC</td>
+          <td class="nfo" data-spec="nfc">{{productDetails.gsmCommunicationsDetails.communicationsNfc}}</td>
+        </tr>
+
+
+        <tr>
+          <td class="ttl">Radio</td>
+          <td class="nfo" data-spec="radio">{{productDetails.gsmCommunicationsDetails.communicationsRadio}}</td>
+        </tr>
+
+        <tr>
+          <td class="ttl">USB</td>
+          <td class="nfo" data-spec="usb">{{productDetails.gsmCommunicationsDetails.communicationsUsb}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowspan="7" scope="row">Battery</th>
+          <td class="ttl">Type</td>
+          <td class="nfo" data-spec="batdescription1">{{productDetails.gsmBatteryDetails.batteryType}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0" class="table table-responsive">
+      <tbody>
+        <tr>
+          <th rowspan="6" scope="row">Misc</th>
+          <td class="ttl">Colors</td>
+          <td class="nfo" data-spec="colors">{{productDetails.gsmMiscDetails.miscColors}}</td>
+        </tr>
+
+        <tr>
+          <td class="ttl">Models</td>
+          <td class="nfo" data-spec="models">{{productDetails.gsmMiscDetails.miscModels}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+

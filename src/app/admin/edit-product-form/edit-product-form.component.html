@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-container form-outline">
+      <form #f="ngForm" [formGroup]="newProductForm" (ngSubmit)="save(f.value)">
+        <mat-form-field class="col-lg-12">
+          <mat-label for="name">Name</mat-label>
+          <input matInput formControlName="name" id="name" type="text" [(ngModel)]="productValue.name" required>
+          <mat-error *ngIf="name?.errors?.['required']">
+            Name is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="price">Price</mat-label>
+          <input matInput formControlName="price" id="price" name="price" type="number" [(ngModel)]="productValue.price"
+            required min>
+          <span matTextSuffix>$&nbsp;</span>
+          <mat-error *ngIf="price?.errors?.['required']">
+            Price is required.
+          </mat-error>
+          <mat-error *ngIf="price?.errors?.['min']">
+            Price should be 0 or Higher.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="companyName">Company Name</mat-label>
+          <mat-select name="companyName" id="companyName" formControlName="companyName"
+            [(ngModel)]="productValue.companyName">
+            <mat-option *ngFor="let cN of companyNames$|async" [value]="cN.name">
+              {{cN.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="companyName?.errors?.['required']">
+            Company Name is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="storage">Storage</mat-label>
+          <mat-select name="storage" id="storage" formControlName="storage" [(ngModel)]="productValue.storage">
+            <mat-option *ngFor="let s of storage$|async" [value]="s.text">
+              {{s.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="storage?.errors?.['required']">
+            Storage is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="color">Color</mat-label>
+          <input matInput name="color" id="color" type="text" formControlName="color" [(ngModel)]="productValue.color">
+          <mat-error *ngIf="color?.errors?.['required']">
+            Color is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="imageUrl">Image URL</mat-label>
+          <input matInput name="imageUrl" id="imageUrl" type="text" formControlName="imageUrl" required
+            [(ngModel)]="productValue.imageUrl">
+          <mat-error *ngIf="imageUrl?.errors?.['required']">
+            Image URL is required.
+          </mat-error>
+          <mat-error *ngIf="imageUrl?.errors?.['pattern']">
+            Please enter a valid URL.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="highlights">Highlights</mat-label>
+          <textarea matInput name="highlights" id="highlights" formControlName="highlights" required [(ngModel)]="productValue.highlights"></textarea>
+          <mat-error *ngIf="highlights?.errors?.['required']">
+            Highlights is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12">
+          <mat-label for="promotions">Promotion</mat-label>
+          <textarea matInput name="promotions" id="promotions" formControlName="promotions" required [(ngModel)]="productValue.promotions"></textarea>
+          <mat-error *ngIf="promotions?.errors?.['required']">
+            Promotions are required.
+          </mat-error>
+        </mat-form-field>
+        <div class="mb-4">
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-lg btn-block col-lg-6">Save</button>
+          <button type="button" (click)="delete()" class="btn btn-danger btn-lg btn-block col-lg-6">Delete</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="col-md-6">
+    <div class="card" style="width: 20rem;">
+      <img [src]="imageUrl?.value" class="card-img-top">
+      <div class="card-body">
+        <h4 class="card-title">
+          {{ name?.value}} {{ color?.value}} {{ storage?.value }}
+        </h4>
+        <p class="card-text">{{price?.value| currency: 'USD': true}}</p>
+      </div>
+    </div>
+  </div>
+</div>

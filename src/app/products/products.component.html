@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-3">
+    <div class="sticky-top">
+      <h2>Filters</h2>
+      <h4>Company</h4>
+      <mat-form-field class="col-lg-12">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="companyName" (valueChange)="filterExact('companyName',companyName)">
+          <mat-option>None</mat-option>
+          <mat-option value="Apple">Apple</mat-option>
+          <mat-option value="Asus">Asus</mat-option>
+          <mat-option value="Samsung">Samsung</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button type="button" class="btn btn-danger col" *ngIf="companyName" (click)="removeFilter('companyName')">Remove
+        filter</button>
+      <h4>Storage</h4>
+      <mat-form-field class="col-lg-12">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="storage" (valueChange)="filterExact('storage',storage)">
+          <mat-option>None</mat-option>
+          <mat-option value="32GB">32GB</mat-option>
+          <mat-option value="64GB">64GB</mat-option>
+          <mat-option value="128GB">128GB</mat-option>
+          <mat-option value="256GB">256GB</mat-option>
+          <mat-option value="512GB">512GB</mat-option>
+          <mat-option value="1TB">1TGB</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button type="button" class="btn btn-danger lg" *ngIf="storage" (click)="removeFilter('storage')">Remove filter</button>
+      <h4>Price Greater Than</h4>
+      <input class="col-lg-12" type="number" [(ngModel)]="priceHigherThan"
+        (change)="filterGreaterThan('price', priceHigherThan)">
+      <button type="button" class="btn btn-danger col" *ngIf="priceHigherThan" (click)="removeFilter('price')">Remove
+        filter</button>
+      <h4>Price Smaller Than</h4>
+      <input class="col-lg-12" type="number" [(ngModel)]="priceLowerThan" (change)="filterSmallerThan('price',priceLowerThan)">
+      <button type="button" class="btn btn-danger col" *ngIf="priceLowerThan"
+        (click)="removeFilter('price');">Removefilter</button>
+    </div>
+  </div>
+  <div class="col">
+    <p>
+      <input #query (keyup)="search(query.value);calculatePagedProduct()" type="text" class="form-control" placeholder="Search...">
+    </p>
+    <div class="row">
+      <div class="col" *ngFor="let p of pagedProduct; let i = index">
+        <product-card [product]="p" [routerLink]="['/details/', p.key]"></product-card>
+      </div>
+    </div>
+    <ngb-pagination [(page)]="currentPage" [pageSize]="pageSize" [collectionSize]="filteredProduct.length"
+      (pageChange)="calculatePagedProduct()">
+    </ngb-pagination>
+  </div>
+
+</div>
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+img{
+  border: 1px solid;
+  margin: 10px;
+}
+#specs-list {
+  width: 800px;
+  margin-bottom: 10px;
+}
+#specs-list table {
+  border-top: 5px solid #eee;
+  width: 100%;
+  padding: 1px 0;
+  background-color: #fafafa;
+}
+
+tr {
+  display: table-row;
+}
+
+#specs-list .tr-hover td {
+  top: 0;
+  padding: 3px 10px;
+  transition: all 0.15s ease-out;
+
+}
+#specs-list td.ttl {
+  color: #7d7464;
+  font-weight: 700;
+  width: 110px;
+}
+
+#specs-list td {
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 16px;
+}
+#specs-list td,#specs-list th {
+  font: 20px Arimo, Arial;
+  padding: 2px 10px;
+  vertical-align: top;
+}
+
+#specs-list .tr-hover .nfo {
+  z-index: 1;
+}
+.nfo {
+  position: relative;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+  white-space: pre-line;
+}
+
+
+
+th{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
