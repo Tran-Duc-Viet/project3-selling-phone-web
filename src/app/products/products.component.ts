@@ -1,6 +1,5 @@
 import { Product } from 'models/product';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ProductService } from 'services/product.service';
 import * as _ from 'lodash';
 import { ProductSpecService } from 'services/product-spec.service';
@@ -13,6 +12,7 @@ import { SearchService } from 'services/search.service';
   styleUrls: ['./products.component.css'] // 'styleUrls' instead of 'styleUrl'
 })
 export class ProductsComponent implements OnInit {
+  allProducts: Product[];
   companyName: string;
   storage: string;
   priceHigherThan: number;
@@ -31,15 +31,16 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getAll().subscribe(products => {
-      this.filteredProduct=this.searchedProducts=this.products = products;
+      this.filteredProduct=this.searchedProducts=this.products=this.allProducts = products;
       this.applyFilters();
       this.calculatePagedProduct();
     });
   }
 
   private applyFilters() {
-  console.log('Applying filters:', this.filters);
   this.filteredProduct = _.filter(this.searchedProducts, _.conforms(this.filters));
+  this.calculatePagedProduct();
+
   console.log('Filtered Results:', this.filteredProduct);
 }
 
@@ -70,6 +71,8 @@ export class ProductsComponent implements OnInit {
     const endIndex = startIndex + this.pageSize;
 
     this.pagedProduct = this.filteredProduct.slice(startIndex, endIndex);
+    this.applyFilters();
+
   }
 
    search(query: string) {
@@ -97,7 +100,7 @@ export class ProductsComponent implements OnInit {
         console.error('Error during search:', error);
       });
     } else {
-      this.searchedProducts = this.products;
+      this.searchedProducts = this.allProducts;
       this.applyFilters();
     }
   }

@@ -60,7 +60,7 @@
         </tr>
         <tr>
           <td class="ttl">SIM</td>
-          <td class="nfo" data-spec="sim">{{getHighlights(productDetails.gsmBodyDetails.bodySim)}}</td>
+          <td class="nfo" data-spec="sim" [innerHTML]="replaceWithBR(getSelfieCamera(productDetails.gsmSelfieCameraDetails))"></td>
         </tr>
         <tr>
           <td class="ttl">&nbsp;</td>
@@ -137,7 +137,7 @@
         <tr>
           <th rowSpan="4" scope="row" class="small-line-height">Main Camera</th>
           <td class="ttl">Camera</td>
-          <td class="nfo" data-spec="cam1modules" [innerHTML]="getHighlights(getMainCamera(productDetails.gsmMainCameraDetails))"></td>
+          <td class="nfo" data-spec="cam1modules" [innerHTML]="replaceWithBR(getMainCamera(productDetails.gsmMainCameraDetails))"></td>
         </tr>
         <tr>
           <td class="ttl">Features</td>
@@ -154,8 +154,7 @@
         <tr>
           <th rowSpan="4" scope="row" class="small-line-height">Selfie camera</th>
           <td class="ttl">Camera</td>
-          <td class="nfo" data-spec="cam2modules" >
-            {{getHighlights(getSelfieCamera(productDetails.gsmSelfieCameraDetails))}}
+          <td class="nfo" data-spec="cam2modules" [innerHTML]="replaceWithBR(getSelfieCamera(productDetails.gsmSelfieCameraDetails))">
           </td>
         </tr>
         <tr>

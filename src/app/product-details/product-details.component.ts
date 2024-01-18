@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductSpecifications(brand, productName) {
     this.productSpecService.getProductSpec(brand as string, productName as string).subscribe((data) => {
-      console.log(data);
+
       this.productDetails = data;
     });
   }
@@ -35,8 +35,8 @@ export class ProductDetailsComponent implements OnInit {
   if (highlights) {
     const regex = /\n/g;
     let rt = highlights;
-    console.log(rt.replace('\n', "<br>"));
-    return rt.replace('\n', "<br>"); // Return the string with replaced newline characters
+
+    return rt.replace(regex, "<br>"); // Return the string with replaced newline characters
   }
   return '';
 }
@@ -47,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
     });
 
     let cameraValue = mainCamera[camera!];
-    console.log(cameraValue);
+
     return cameraValue;
 }
 
@@ -57,7 +57,17 @@ export class ProductDetailsComponent implements OnInit {
     });
 
     let cameraValue = selfieCamera[camera!];
-    console.log(cameraValue);
+
     return cameraValue;
+  }
+
+  replaceWithBR(highlights: string){
+    if (highlights) {
+    const regex = /\\n/g;
+    let rt = highlights;
+
+    return rt.replace(regex, "<br>"); // Return the string with replaced newline characters
+  }
+  return '';
   }
 }
